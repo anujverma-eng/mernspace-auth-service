@@ -1,6 +1,4 @@
 function login(name: string): string {
-  // console.log(name);
-
   return name;
 }
 

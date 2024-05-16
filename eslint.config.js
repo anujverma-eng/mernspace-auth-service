@@ -1,7 +1,7 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
 import eslintConfigPrettier from "eslint-config-prettier";
 
 export default tseslint.config(
@@ -19,17 +19,17 @@ export default tseslint.config(
     },
   },
   {
-    ignores: [".config/*", "dist", "build/**/*", "eslint.config.js"]
+    ignores: [".config/*", "dist", "build/**/*", "eslint.config.js"],
   },
   {
-    files: ['**/*.js'],
+    files: ["**/*.js"],
     ...tseslint.configs.disableTypeChecked,
   },
   {
     rules: {
-      "no-console": "warn",
-      "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }],
-      "block-scoped-var": "error"
-    }
-  }
+      "no-console": "error",
+      "arrow-body-style": ["error", "as-needed", { requireReturnForObjectLiteral: true }],
+      "block-scoped-var": "error",
+    },
+  },
 );
