@@ -27,7 +27,7 @@ export default tseslint.config(
   },
   {
     rules: {
-      "no-console": "error",
+      "no-console": "warn",
       "arrow-body-style": ["error", "as-needed", { requireReturnForObjectLiteral: true }],
       "block-scoped-var": "error",
     },
