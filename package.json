@@ -1,18 +1,27 @@
 {
-  "name": "auth-service",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "tsc",
-    "format:check": "prettier . --check" ,
-    "format:fix": "prettier . --write"
-  },
-  "author": "Anuj Verma <anujverma123ok@gmail.com>",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.12.12",
-    "prettier": "3.2.5",
-    "typescript": "^5.4.5"
-  }
+    "name": "auth-service",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "dev": "tsc",
+        "format:check": "prettier . --check",
+        "format:fix": "prettier . --write",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint . --fix"
+    },
+    "author": "Anuj Verma <anujverma123ok@gmail.com>",
+    "license": "ISC",
+    "devDependencies": {
+        "@eslint/js": "^9.2.0",
+        "@types/node": "^20.12.12",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-react": "^7.34.1",
+        "globals": "^15.2.0",
+        "prettier": "3.2.5",
+        "typescript": "^5.4.5",
+        "typescript-eslint": "^7.9.0"
+    }
 }

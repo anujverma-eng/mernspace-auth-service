@@ -1,8 +1,22 @@
-function login(name: string): boolean {
-  console.log(name);
-  return true;
+function login(name: string): string {
+  // console.log(name);
+
+  return name;
 }
 
 login("Anuj");
 
-const a = (ab: string): void => {};
+const foo = () => 0;
+
+foo();
+
+const bar = () => {
+  return {
+    bar: {
+      foo: 1,
+      bar: 2,
+    },
+  };
+};
+
+bar();
