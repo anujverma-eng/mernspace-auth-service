@@ -4,3 +4,5 @@ function login(name: string): boolean {
 }
 
 login("Anuj");
+
+const a = (ab: string): void => {};

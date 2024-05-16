@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc"
+    "dev": "tsc",
+    "format:check": "prettier . --check" ,
+    "format:fix": "prettier . --write"
   },
   "author": "Anuj Verma <anujverma123ok@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.12.12",
+    "prettier": "3.2.5",
     "typescript": "^5.4.5"
   }
 }
