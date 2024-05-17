@@ -5,7 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "dev": "tsc",
+        "dev": "nodemon src/server.ts",
         "format:check": "prettier . --check",
         "format:fix": "prettier . --write",
         "lint:check": "eslint .",
@@ -23,11 +23,15 @@
         "globals": "^15.2.0",
         "husky": "^9.0.11",
         "lint-staged": "^15.2.2",
+        "nodemon": "^3.1.0",
         "prettier": "3.2.5",
+        "ts-node": "^10.9.2",
         "typescript": "^5.4.5",
         "typescript-eslint": "^7.9.0"
     },
     "dependencies": {
-        "dotenv": "^16.4.5"
+        "@types/express": "^4.17.21",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2"
     }
 }
