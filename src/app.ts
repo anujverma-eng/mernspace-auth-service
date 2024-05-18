@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 import express from "express";
 import errorMiddleWare from "./errors/errorMiddleware";
 import authRouter from "./routes/auth.route";
