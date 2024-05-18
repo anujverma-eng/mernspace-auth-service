@@ -1,5 +1,5 @@
-import { Config } from "./config";
 import app from "./app";
+import { Config } from "./config";
 import { logger } from "./config/logger";
 
 const startServer = () => {
@@ -7,7 +7,6 @@ const startServer = () => {
 
   try {
     app.listen(PORT, () => {
-      logger.debug("Debug message", { PORT });
       logger.info(`server is listening on http://localhost:${PORT}`);
     });
   } catch (error: unknown) {
