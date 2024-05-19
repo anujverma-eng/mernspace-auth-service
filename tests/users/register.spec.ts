@@ -147,5 +147,39 @@ describe("POST /auth/register", () => {
       expect(users).toHaveLength(1);
     });
   });
-  describe("some fields missing", () => {});
+  describe("some fields missing", () => {
+    it("should return status code of 400, Email should not be empty", async () => {
+      // Arrange
+      const userData = {
+        firstName: "Anuj",
+        lastName: "verma",
+        email: "",
+        password: "password",
+      };
+      // Act
+      const userRepository = connection.getRepository(User);
+
+      const response = await request(app).post("/auth/register").send(userData);
+      const users = await userRepository.find();
+
+      expect(response.status).toBe(400);
+      expect(users).toHaveLength(0);
+    });
+    it("should return status code of 400, as correct Email required", async () => {
+      // Arrange
+      const userData = {
+        firstName: "Anuj",
+        lastName: "verma",
+        email: "wrongEmail",
+        password: "password",
+      };
+      // Act
+      const userRepository = connection.getRepository(User);
+      const response = await request(app).post("/auth/register").send(userData);
+      const users = await userRepository.find();
+
+      expect(response.status).toBe(400);
+      expect(users).toHaveLength(0);
+    });
+  });
 });
