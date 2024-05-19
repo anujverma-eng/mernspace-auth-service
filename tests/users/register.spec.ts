@@ -107,6 +107,45 @@ describe("POST /auth/register", () => {
       expect(users[0]).toHaveProperty("role");
       expect(users[0].role).toBe(ROLES.CUSTOMER);
     });
+
+    it("should hash the password", async () => {
+      // Arrange
+      const userData = {
+        firstName: "Anuj",
+        lastName: "verma",
+        email: "anuj@anuj.com",
+        password: "password",
+      };
+      // Act
+      await request(app).post("/auth/register").send(userData);
+      // Assert
+      const userRepository = connection.getRepository(User);
+      const users = await userRepository.find();
+      expect(users[0].password).not.toBe(userData.password);
+      expect(users[0].password).toHaveLength(60);
+      expect(users[0].password).toMatch(/^\$2b\$\d+\$/);
+    });
+
+    it("should return status code of 400, as duplicate user found", async () => {
+      // Arrange
+      const userData = {
+        firstName: "Anuj",
+        lastName: "verma",
+        email: "anuj@anuj.com",
+        password: "password",
+      };
+      // Act
+      const userRepository = connection.getRepository(User);
+
+      await userRepository.save({ ...userData, role: ROLES.CUSTOMER });
+
+      const response = await request(app).post("/auth/register").send(userData);
+
+      const users = await userRepository.find();
+
+      expect(response.status).toBe(400);
+      expect(users).toHaveLength(1);
+    });
   });
   describe("some fields missing", () => {});
 });
