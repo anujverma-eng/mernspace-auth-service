@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5501
 
 # The command to run our app
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "test:watch"]
