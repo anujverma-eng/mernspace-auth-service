@@ -4,6 +4,7 @@ import { DataSource } from "typeorm";
 import { AppDataSource } from "../../src/config/data-source";
 import { truncateTables } from "../utils";
 import { User } from "../../src/entity/User";
+import { ROLES } from "../../src/constants";
 
 describe("POST /auth/register", () => {
   let connection: DataSource;
@@ -14,6 +15,8 @@ describe("POST /auth/register", () => {
 
   beforeEach(async () => {
     // Database truncate: clear all DB in Test DB
+    await connection.dropDatabase();
+    await connection.synchronize();
     await truncateTables(connection);
   });
 
@@ -62,7 +65,6 @@ describe("POST /auth/register", () => {
       };
       // Act
       await request(app).post("/auth/register").send(userData);
-
       // Assert
       const userRepository = connection.getRepository(User);
       const users = await userRepository.find();
@@ -70,6 +72,40 @@ describe("POST /auth/register", () => {
       expect(users[0].firstName).toBe(userData.firstName);
       expect(users[0].lastName).toBe(userData.lastName);
       expect(users[0].email).toBe(userData.email);
+    });
+
+    it("should match the ID in DB", async () => {
+      // Arrange
+      const userData = {
+        firstName: "Anuj",
+        lastName: "verma",
+        email: "anuj@anuj.com",
+        password: "password",
+      };
+      // Act
+      const resp = await request(app).post("/auth/register").send(userData);
+      // Assert
+      expect(resp.body).toHaveProperty("id");
+      const userRepository = connection.getRepository(User);
+      const users = await userRepository.find();
+      expect((resp.body as Record<string, string>).id).toBe(users[0].id);
+    });
+
+    it("should have the role customer only", async () => {
+      // Arrange
+      const userData = {
+        firstName: "Anuj",
+        lastName: "verma",
+        email: "anuj@anuj.com",
+        password: "password",
+      };
+      // Act
+      await request(app).post("/auth/register").send(userData);
+      // Assert
+      const userRepository = connection.getRepository(User);
+      const users = await userRepository.find();
+      expect(users[0]).toHaveProperty("role");
+      expect(users[0].role).toBe(ROLES.CUSTOMER);
     });
   });
   describe("some fields missing", () => {});
