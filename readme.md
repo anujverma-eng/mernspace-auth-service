@@ -4,7 +4,7 @@ docker run --rm -it -v $(pwd):/usr/src/app -v /usr/src/app/node_modules --env-fi
 
 # DB - Postgres
 
-docker run --rm --name mernpg-container -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -v merngpgdata:/var/lib/postgresql/data -p 5432:5432 -d postgres
+docker run --rm --name mern-auth-service-container -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -v mern_auth_service_data:/var/lib/postgresql/data -p 5432:5432 -d postgres
 
 # Test
 
@@ -18,6 +18,6 @@ The ECONNREFUSED 127.0.0.1:5432 error occurs because your Express app running in
 
 docker network create my-network
 
-docker run --rm --name mernpg-container --network my-network -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -v merngpgdata:/var/lib/postgresql/data -p 5432:5432 -d postgres
+docker run --rm --name mern-auth-service-container --network my-network -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -v mern_auth_service_data:/var/lib/postgresql/data -p 5432:5432 -d postgres
 
 docker run --rm -it --network my-network -v $(pwd):/usr/src/app -v /usr/src/app/node_modules --env-file $(pwd)/.env.test -p 5501:5501 -e NODE_ENV=development auth-service:test

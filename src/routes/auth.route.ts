@@ -1,8 +1,8 @@
 import express, { NextFunction, Request, Response } from "express";
-import { AuthController } from "../controllers/AuthController";
-import { UserService } from "../services/UserService";
+import { AuthController } from "../controllers/auth.controller";
+import { UserService } from "../services/user.service";
 import { AppDataSource } from "../config/data-source";
-import { User } from "../entity/User";
+import { User } from "../entity/user.entity";
 import { logger } from "../config/logger";
 import registerValidator from "../validators/register.validator";
 

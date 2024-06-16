@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { User } from "../entity/User";
+import { User } from "../entity/user.entity";
 import bcrypt from "bcrypt";
 import { UserData } from "../types";
 import createHttpError from "http-errors";

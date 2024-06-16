@@ -7,7 +7,7 @@ const startServer = () => {
 
   try {
     app.listen(PORT, () => {
-      logger.info(`server is listening on http://localhost:${PORT}`);
+      logger.info(`server is listening on http://localhost:${PORT}`, { Config });
     });
   } catch (error: unknown) {
     if (error instanceof Error) {

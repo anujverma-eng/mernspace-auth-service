@@ -1,7 +1,7 @@
 import { NextFunction, Response } from "express";
 import { validationResult } from "express-validator";
 import { Logger } from "winston";
-import { UserService } from "../services/UserService";
+import { UserService } from "../services/user.service";
 import { RegisterUserRequest } from "../types";
 
 export class AuthController {
